@@ -1,105 +1,111 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import Animated, {
-  FadeIn,
-  FadeOut,
-  LinearTransition,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import FloatingMenu from "@/components/FloatingMenu";
+import MenuItem from "@/components/MenuItem";
 
 const Main = () => {
-  const { right, bottom } = useSafeAreaInsets();
-  const { width, height } = useWindowDimensions();
   const theme = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      borderRadius: isOpen ? withTiming(20) : withTiming(50),
-    };
-  });
-
   return (
-    <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-      <Animated.View
-        style={{
-          //   backgroundColor: "red",
-          justifyContent: "center",
-          alignItems: "flex-end",
-          //   borderRadius: isOpen ? 10 : 50,
-          //   padding: isOpen ? 10 : 0,
-          position: "absolute",
-          bottom: height / 30 + bottom,
-          right: width / 20 + right,
-          //   overflow: "hidden",
-        }}
-        layout={LinearTransition}
-      >
-        <Animated.View
-          style={[
-            {
-              backgroundColor: "red",
-              justifyContent: "center",
-              alignItems: "flex-end",
-              // borderRadius: isOpen ? 10 : 50,
-              // padding: isOpen ? 10 : 0,
-              // position: "absolute",
-              // bottom: height / 30 + bottom,
-              // right: width / 20 + right,
-              //   overflow: "hidden",
-            },
-            animatedStyle,
-          ]}
-          layout={LinearTransition}
-        >
-          {isOpen && (
-            <Animated.View
-              entering={FadeIn.delay(300)}
-              exiting={FadeOut.duration(100)}
-              layout={LinearTransition}
-              style={{
-                padding: 10,
-                // backgroundColor: "blue",
-                flex: 1,
-                // overflow: "hidden",
-              }}
-            >
-              <Text>Hello world! How are you ?</Text>
-              <Text>Hello world! How are you ?</Text>
-              <Text>Hello world! How are you ?</Text>
-              <Text>Hello world! How are you ?</Text>
-              <Text>Hello world! How are you ?</Text>
-            </Animated.View>
-          )}
-          <Animated.View
-            layout={LinearTransition}
-            style={{
-              padding: 10,
-              backgroundColor: "red",
-              borderRadius: 50,
-              //   transform: [{ rotate: isOpen ? "45deg" : "0deg" }],
-            }}
-            onTouchEndCapture={() => setIsOpen((prev) => !prev)}
-          >
-            <Ionicons name="add" size={24} color={theme.colors.text} />
-          </Animated.View>
-        </Animated.View>
-      </Animated.View>
-    </View>
+    <ImageBackground
+      style={{ flex: 1 }}
+      source={{
+        uri: "https://i.pinimg.com/originals/c6/f8/ea/c6f8ea31a9ba7dae55542599a777e989.jpg",
+      }}
+    >
+      <FloatingMenu>
+        <View style={styles.container}>
+          <View style={styles.rows}>
+            <MenuItem
+              icon={
+                <Ionicons
+                  name="film-outline"
+                  size={28}
+                  color={theme.colors.text}
+                />
+              }
+              title={"Media"}
+            />
+            <MenuItem
+              icon={
+                <Ionicons
+                  name="copy-outline"
+                  size={28}
+                  color={theme.colors.text}
+                />
+              }
+              title={"Template"}
+            />
+            <MenuItem
+              icon={
+                <Ionicons
+                  name="calendar-outline"
+                  size={28}
+                  color={theme.colors.text}
+                />
+              }
+              title={"Event"}
+            />
+          </View>
+          <View style={styles.rows}>
+            <MenuItem
+              icon={
+                <Ionicons name="gift" size={28} color={theme.colors.text} />
+              }
+              title={"Celebrate"}
+            />
+            <MenuItem
+              icon={
+                <Ionicons
+                  name="briefcase-outline"
+                  size={28}
+                  color={theme.colors.text}
+                />
+              }
+              title={"Job"}
+            />
+            <MenuItem
+              icon={
+                <Ionicons
+                  name="stats-chart"
+                  size={28}
+                  color={theme.colors.text}
+                />
+              }
+              title={"Poll"}
+            />
+          </View>
+          <View style={styles.rows}>
+            <MenuItem
+              icon={
+                <Ionicons
+                  name="folder-open"
+                  size={28}
+                  color={theme.colors.text}
+                />
+              }
+              title={"Document"}
+            />
+            <MenuItem
+              icon={<Ionicons name="cog" size={28} color={theme.colors.text} />}
+              title={"Services"}
+            />
+            <View />
+          </View>
+        </View>
+      </FloatingMenu>
+    </ImageBackground>
   );
 };
 
 export default Main;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    gap: 15,
+  },
+  rows: {
+    flexDirection: "row",
+  },
+});
