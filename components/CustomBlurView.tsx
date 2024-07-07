@@ -21,7 +21,7 @@ const CustomBlurView = ({ bgColor }: { bgColor?: string }) => {
           width,
           height,
           backgroundColor:
-            Platform.OS === "android" ? theme.colors.border : bgColor,
+            Platform.OS === "android" ? theme.colors.card : bgColor,
         },
       ]}
       tint={tint === "dark" ? "systemMaterialDark" : "systemMaterialLight"}
