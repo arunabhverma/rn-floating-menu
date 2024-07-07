@@ -22,7 +22,7 @@ const FloatingMenu = ({ children }: { children: ReactNode }) => {
   const animatedStyle = useAnimatedStyle(() => {
     return {
       borderRadius: isOpen ? withTiming(20) : withTiming(50),
-      padding: isOpen ? 10 : 0,
+      padding: isOpen ? 15 : 0,
     };
   }, [isOpen]);
 
@@ -41,7 +41,6 @@ const FloatingMenu = ({ children }: { children: ReactNode }) => {
         styles.mainContainerWrapper,
         {
           maxWidth: width - 2 * (width / 20 + right),
-          // maxHeight: height / 3,
           bottom: height / 30 + bottom,
           right: width / 20 + right,
         },
@@ -92,18 +91,15 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   childrenWrapper: {
-    padding: 10,
     paddingBottom: 30,
     flex: 1,
   },
   containerWrapper: {
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-end",
     overflow: "hidden",
   },
   mainContainerWrapper: {
     position: "absolute",
-    // justifyContent: "flex-end",
-    // alignItems: "flex-end",
   },
 });

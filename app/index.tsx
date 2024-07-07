@@ -103,9 +103,10 @@ export default Main;
 
 const styles = StyleSheet.create({
   container: {
-    gap: 15,
+    gap: 20,
   },
   rows: {
     flexDirection: "row",
+    gap: 20,
   },
 });

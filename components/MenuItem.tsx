@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { MenuItemsType } from "@/types";
 import Button from "./Button";
@@ -21,7 +21,7 @@ export default MenuItem;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    width: 100,
+    width: 80,
     gap: 5,
   },
   iconContainer: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   textStyle: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: "500",
   },
 });
